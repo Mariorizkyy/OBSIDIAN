@@ -90,7 +90,9 @@ export function AiMarketAnalysis({
     setMessages([]);
   };
 
-  const isProcessing = isLoading || isWaitingFo  return (
+  const isProcessing = isLoading || isWaitingForTx;
+
+  return (
     <div className="glass-panel p-8 rounded-3xl shadow-2xl relative overflow-hidden">
       <div className="absolute -top-10 -left-10 w-40 h-40 bg-emerald-500/20 rounded-full blur-3xl"></div>
       
