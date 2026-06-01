@@ -7,7 +7,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { defineChain } from "viem";
 import { useState } from "react";
 
-const ritualTestnet = defineChain({
+export const ritualTestnet = defineChain({
   id: 1979,
   name: "Ritual Testnet",
   network: "ritual-testnet",
