@@ -121,9 +121,6 @@ export function TerminalHeader({
         <BloombergButton color="accent" onClick={onHelpClick} className="px-2 py-1.5 rounded bg-transparent text-[#666] hover:text-white transition-colors">
           <HelpCircle className="h-4 w-4" />
         </BloombergButton>
-        <BloombergButton color="accent" onClick={onThemeToggle} className="px-2 py-1.5 rounded bg-transparent text-[#666] hover:text-white transition-colors">
-          {isDarkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-        </BloombergButton>
       </div>
 
       {/* Connect Wallet Button */}

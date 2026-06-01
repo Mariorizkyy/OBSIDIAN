@@ -3,15 +3,14 @@ import { useCallback } from "react";
 import { currentViewAtom, errorAtom, isDarkModeAtom, isShortcutsHelpOpenAtom } from "../atoms";
 
 export function useTerminalUI() {
-  const [isDarkMode, setIsDarkMode] = useAtom(isDarkModeAtom);
+  const isDarkMode = true;
+  const setIsDarkMode = useCallback(() => {}, []);
   const [error, setError] = useAtom(errorAtom);
   const [isShortcutsHelpOpen, setIsShortcutsHelpOpen] = useAtom(isShortcutsHelpOpenAtom);
   const [currentView, setCurrentView] = useAtom(currentViewAtom);
 
-  // Theme toggle handler
-  const handleThemeToggle = useCallback(() => {
-    setIsDarkMode(!isDarkMode);
-  }, [isDarkMode, setIsDarkMode]);
+  // Theme toggle handler (no-op now)
+  const handleThemeToggle = useCallback(() => {}, []);
 
   // View handlers
   const handleMarketView = useCallback(() => {
