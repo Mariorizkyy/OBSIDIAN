@@ -65,36 +65,37 @@ export function NewsPanel({ colors }: NewsPanelProps) {
   }, [fetchNews]);
 
   return (
-    <div className="glass-panel p-4 rounded-xl flex flex-col h-full h-[800px]">
-      <div className="flex justify-between items-center mb-4">
-        <h3 className="text-sm font-bold flex items-center gap-2">
-          <Newspaper className="h-4 w-4" style={{ color: colors.accent }} />
+    <div className="glass-panel p-6 rounded-3xl flex flex-col h-full h-[800px] shadow-2xl relative overflow-hidden">
+      <div className="absolute top-0 left-0 w-32 h-32 bg-indigo-500/10 rounded-full blur-3xl"></div>
+      
+      <div className="flex justify-between items-center mb-6 z-10 relative">
+        <h3 className="text-lg font-extrabold flex items-center gap-3 tracking-wide" style={{ color: colors.accent }}>
+          <Newspaper className="h-5 w-5" />
           LIVE NEWS
         </h3>
-        <BloombergButton color="accent" onClick={() => fetchNews()} disabled={isLoading} className="text-xs">
-          {isLoading ? <RefreshCw className="h-3 w-3 animate-spin" /> : <RefreshCw className="h-3 w-3" />}
+        <BloombergButton color="accent" onClick={() => fetchNews()} disabled={isLoading} className="p-2 rounded-xl transition-transform hover:scale-110">
+          {isLoading ? <RefreshCw className="h-4 w-4 animate-spin" /> : <RefreshCw className="h-4 w-4" />}
         </BloombergButton>
       </div>
 
-      <div className="overflow-y-auto pr-2 space-y-4 flex-1 custom-scrollbar">
-        {error && <div className="p-2 text-xs text-rose-400 bg-rose-500/10 rounded-md">{error}</div>}
+      <div className="overflow-y-auto pr-3 space-y-4 flex-1 custom-scrollbar z-10 relative">
+        {error && <div className="p-3 text-sm font-bold text-rose-400 bg-rose-500/10 border border-rose-500/20 rounded-xl shadow-lg">{error}</div>}
         {news.length === 0 && !isLoading && !error && (
-          <div className="text-center py-8 text-xs text-gray-400">No news found</div>
+          <div className="text-center py-10 text-sm text-gray-400">No news found</div>
         )}
         
         {news.map((item) => (
           <div
             key={item.url}
-            className="p-3 border rounded-lg transition-all hover:bg-white/5 cursor-pointer"
-            style={{ borderColor: colors.border, backgroundColor: colors.surface }}
+            className="p-4 border border-white/5 rounded-2xl transition-all duration-300 hover:bg-white/10 hover:border-emerald-500/30 cursor-pointer shadow-sm group"
             onClick={() => window.open(item.url, '_blank')}
           >
-            <h4 className="text-xs font-bold mb-1 line-clamp-2 hover:text-emerald-400 transition-colors" style={{ color: colors.text }}>
+            <h4 className="text-sm font-bold mb-2 line-clamp-2 group-hover:text-emerald-400 transition-colors drop-shadow-sm leading-relaxed" style={{ color: colors.text }}>
               {item.title}
             </h4>
-            <p className="text-[10px] mb-2 line-clamp-2 text-gray-400">{item.summary}</p>
-            <div className="flex justify-between text-[9px] text-gray-500">
-              <span className="font-semibold" style={{ color: colors.accent }}>{item.source}</span>
+            <p className="text-xs mb-3 line-clamp-2 text-gray-400 leading-relaxed">{item.summary}</p>
+            <div className="flex justify-between text-[10px] text-gray-500 font-medium">
+              <span className="font-bold tracking-wider" style={{ color: colors.accent }}>{item.source}</span>
               <span>{formatPublishedTime(item.time_published)}</span>
             </div>
           </div>

@@ -85,13 +85,13 @@ export function TerminalHeader({
   };
 
   return (
-    <div className="glass-panel sticky top-0 z-50 flex flex-wrap gap-2 px-4 py-3 items-center w-full border-b border-white/10 shadow-lg">
-      <div className="mr-6 font-bold text-xl tracking-widest neon-text-green flex items-center gap-2">
-        <Activity className="h-5 w-5" />
+    <div className="glass-panel mx-4 mt-4 rounded-3xl sticky top-4 z-50 flex flex-wrap gap-4 px-6 py-4 items-center border-b-2 border-emerald-500/20 shadow-2xl">
+      <div className="mr-8 font-bold text-2xl tracking-widest neon-text-green flex items-center gap-3">
+        <Activity className="h-6 w-6" />
         OBSIDIAN
       </div>
       
-      <BloombergButton color="red" onClick={onCancelClick}>
+      <BloombergButton color="red" onClick={onCancelClick} className="px-4 py-2 text-sm font-bold rounded-xl transition-transform hover:scale-105">
         CANCL
       </BloombergButton>
       <BloombergButton color="green" onClick={onNewClick}>

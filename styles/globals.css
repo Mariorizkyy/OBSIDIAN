@@ -90,12 +90,20 @@
     font-family: var(--font-inter), sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background: radial-gradient(circle at center, #111827 0%, #030712 100%);
+    background: radial-gradient(circle at 15% 50%, rgba(16, 185, 129, 0.15), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(59, 130, 246, 0.1), transparent 25%),
+                linear-gradient(to right, #030712, #0b0f19, #030712);
+    background-size: 200% 200%;
+    animation: gradientMove 15s ease infinite;
     min-height: 100vh;
   }
 
   body.dark {
-    background: radial-gradient(circle at center, #111827 0%, #030712 100%);
+    background: radial-gradient(circle at 15% 50%, rgba(16, 185, 129, 0.15), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(59, 130, 246, 0.1), transparent 25%),
+                linear-gradient(to right, #030712, #0b0f19, #030712);
+    background-size: 200% 200%;
+    animation: gradientMove 15s ease infinite;
     color: white;
   }
 
@@ -105,17 +113,23 @@
   }
 }
 
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 @layer utilities {
   .glass-panel {
-    @apply bg-white/5 backdrop-blur-md border border-white/10 shadow-lg transition-all duration-300;
+    @apply bg-black/40 backdrop-blur-3xl border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] transition-all duration-300;
   }
   .glass-panel:hover {
-    @apply border-white/20 shadow-[0_0_15px_rgba(16,185,129,0.15)];
+    @apply border-emerald-500/30 shadow-[0_8px_32px_0_rgba(16,185,129,0.2)];
   }
   .neon-text-green {
-    @apply text-emerald-400 drop-shadow-[0_0_8px_rgba(52,211,153,0.5)];
+    @apply text-emerald-400 drop-shadow-[0_0_12px_rgba(52,211,153,0.8)] font-extrabold tracking-widest;
   }
   .neon-text-red {
-    @apply text-rose-400 drop-shadow-[0_0_8px_rgba(251,113,133,0.5)];
+    @apply text-rose-400 drop-shadow-[0_0_12px_rgba(251,113,133,0.8)] font-bold;
   }
 }
