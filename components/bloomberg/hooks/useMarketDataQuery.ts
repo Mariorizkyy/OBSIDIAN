@@ -43,8 +43,8 @@ export function useMarketDataQuery() {
     queryKey: [MARKET_DATA_KEY],
     queryFn: fetchMarketData,
     // Configure polling based on isRealTimeEnabled
-    refetchInterval: isRealTimeEnabled ? 30000 : 300000, // 30 seconds in real-time mode, 5 minutes otherwise
-    staleTime: 10000, // 10 seconds
+    refetchInterval: isRealTimeEnabled ? 10000 : 60000, // 10 seconds in real-time mode, 1 minute otherwise
+    staleTime: 5000, // 5 seconds
     refetchOnWindowFocus: false,
     gcTime: 3600000, // 1 hour
   });

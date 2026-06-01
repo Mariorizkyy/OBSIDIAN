@@ -64,7 +64,7 @@ export function MarketTable({ data, isDarkMode }: MarketTableProps) {
       </TableHeader>
       <TableBody>
         <MarketSection
-          title="Crypto Markets"
+          title="L1 / L2 NETWORKS"
           items={data.americas || []}
           sectionNum="1)"
           isDarkMode={isDarkMode}
@@ -72,7 +72,7 @@ export function MarketTable({ data, isDarkMode }: MarketTableProps) {
           updatedSparklines={updatedSparklines}
         />
         <MarketSection
-          title="DeFi Protocols"
+          title="DEFI & INFRASTRUCTURE"
           items={data.emea || []}
           sectionNum="2)"
           isDarkMode={isDarkMode}
@@ -80,7 +80,7 @@ export function MarketTable({ data, isDarkMode }: MarketTableProps) {
           updatedSparklines={updatedSparklines}
         />
         <MarketSection
-          title="AI Tokens"
+          title="AI & EMERGING TECH"
           items={data.asiaPacific || []}
           sectionNum="3)"
           isDarkMode={isDarkMode}

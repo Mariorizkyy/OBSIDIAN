@@ -42,9 +42,18 @@ export function MarketView({ isDarkMode }: MarketViewProps) {
         <NewsPanel colors={colors} />
       </div>
 
-      {/* Tengah: OBSIDIAN AI Core (Dominant) */}
-      <div className="lg:col-span-6 flex flex-col h-full gap-8">
+      {/* Tengah: OBSIDIAN AI Core & Market Data */}
+      <div className="lg:col-span-6 flex flex-col h-full gap-6">
         <AiMarketAnalysis colors={colors as any} />
+        
+        <div className="bg-[#0A0A0A] p-5 rounded-xl border border-[#222] shadow-sm flex-1 overflow-hidden flex flex-col">
+          <h3 className="text-xs font-semibold flex items-center gap-2 mb-4 text-[#888] uppercase tracking-wider">
+            Live Market Infrastructure
+          </h3>
+          <div className="overflow-x-auto custom-scrollbar flex-1">
+            <MarketTable data={data} isDarkMode={isDarkMode} />
+          </div>
+        </div>
       </div>
 
       {/* Sisi Kanan: Smart Auditor & Market Movers */}
