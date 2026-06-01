@@ -283,7 +283,7 @@ export function AiMarketAnalysis({
   const isProcessing = isLoading || isWaitingForTx;
 
   return (
-    <div className="glass-panel p-8 rounded-3xl shadow-2xl relative overflow-hidden">
+    <div className="glass-panel p-8 rounded-3xl shadow-2xl relative overflow-hidden flex-1 flex flex-col h-full">
       <div className="absolute -top-10 -left-10 w-40 h-40 bg-emerald-500/20 rounded-full blur-3xl"></div>
       
       <div className="flex justify-between items-center mb-6 z-10 relative">
@@ -317,10 +317,8 @@ export function AiMarketAnalysis({
 
       {/* AI Commentary Section */}
       <div
-        className="p-6 mb-6 border border-white/10 rounded-2xl text-sm font-mono shadow-inner z-10 relative bg-black/50 custom-scrollbar"
+        className="p-6 mb-6 border border-white/10 rounded-2xl text-sm font-mono shadow-inner z-10 relative bg-black/50 custom-scrollbar flex-1"
         style={{
-          minHeight: "200px",
-          maxHeight: "350px",
           overflowY: "auto"
         }}
       >
