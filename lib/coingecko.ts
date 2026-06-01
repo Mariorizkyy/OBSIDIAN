@@ -135,27 +135,31 @@ function generateEmptyItem(symbol: string, region: string, index: number) {
 
 export async function fetchCryptoNews() {
   try {
-    const response = await fetch("https://min-api.cryptocompare.com/data/v2/news/?lang=EN", { 
-      cache: "no-store",
-      headers: {
-        'Accept': 'application/json'
-      }
+    const response = await fetch("https://api.rss2json.com/v1/api.json?rss_url=https://cointelegraph.com/rss", { 
+      cache: "no-store"
     });
 
     if (!response.ok) {
-      throw new Error(`CryptoCompare API error: ${response.status}`);
+      throw new Error(`RSS API error: ${response.status}`);
     }
 
     const data = await response.json();
     
-    if (data && data.Data && Array.isArray(data.Data)) {
-      return data.Data.slice(0, 20).map((item: any) => ({
-        title: item.title,
-        summary: item.body,
-        url: item.url,
-        source: item.source_info?.name || item.source,
-        time_published: new Date(item.published_on * 1000).toISOString()
-      }));
+    if (data && data.status === "ok" && data.items && Array.isArray(data.items)) {
+      return data.items.slice(0, 20).map((item: any) => {
+        // Strip HTML tags from description if present
+        const cleanSummary = item.description 
+          ? item.description.replace(/<[^>]*>?/gm, '').substring(0, 150) + "..." 
+          : "";
+
+        return {
+          title: item.title,
+          summary: cleanSummary,
+          url: item.link,
+          source: "Cointelegraph",
+          time_published: new Date(item.pubDate).toISOString()
+        };
+      });
     }
     
     return null;
