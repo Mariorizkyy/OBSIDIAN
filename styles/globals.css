@@ -87,18 +87,35 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: var(--font-mono);
-    -webkit-font-smoothing: none;
-    -moz-osx-font-smoothing: none;
+    font-family: var(--font-inter), sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: radial-gradient(circle at center, #111827 0%, #030712 100%);
+    min-height: 100vh;
   }
 
   body.dark {
-    background-color: #121212;
+    background: radial-gradient(circle at center, #111827 0%, #030712 100%);
     color: white;
   }
 
   body.light {
     background-color: #f0f0f0;
     color: black;
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    @apply bg-white/5 backdrop-blur-md border border-white/10 shadow-lg transition-all duration-300;
+  }
+  .glass-panel:hover {
+    @apply border-white/20 shadow-[0_0_15px_rgba(16,185,129,0.15)];
+  }
+  .neon-text-green {
+    @apply text-emerald-400 drop-shadow-[0_0_8px_rgba(52,211,153,0.5)];
+  }
+  .neon-text-red {
+    @apply text-rose-400 drop-shadow-[0_0_8px_rgba(251,113,133,0.5)];
   }
 }
