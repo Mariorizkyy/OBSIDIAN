@@ -85,7 +85,12 @@ export function TerminalHeader({
   };
 
   return (
-    <div className={`flex flex-wrap gap-1 bg-[${colors.surface}] px-2 py-1`}>
+    <div className="glass-panel sticky top-0 z-50 flex flex-wrap gap-2 px-4 py-3 items-center w-full border-b border-white/10 shadow-lg">
+      <div className="mr-6 font-bold text-xl tracking-widest neon-text-green flex items-center gap-2">
+        <Activity className="h-5 w-5" />
+        OBSIDIAN
+      </div>
+      
       <BloombergButton color="red" onClick={onCancelClick}>
         CANCL
       </BloombergButton>

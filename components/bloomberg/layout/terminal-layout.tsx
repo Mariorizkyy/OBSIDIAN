@@ -45,7 +45,7 @@ export function TerminalLayout({ children, shortcuts }: TerminalLayoutProps) {
   }, [isDarkMode, setIsDarkMode]);
 
   return (
-    <div className={`min-h-screen font-mono bg-[${colors.background}] text-[${colors.text}]`}>
+    <div className={`min-h-screen font-sans bg-transparent text-[${colors.text}]`}>
       {children}
 
       {/* Keyboard shortcuts */}
