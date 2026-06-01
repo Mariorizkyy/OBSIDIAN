@@ -65,37 +65,36 @@ export function NewsPanel({ colors }: NewsPanelProps) {
   }, [fetchNews]);
 
   return (
-    <div className="glass-panel p-6 rounded-3xl flex flex-col h-full h-[800px] shadow-2xl relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-32 h-32 bg-indigo-500/10 rounded-full blur-3xl"></div>
+    <div className="bg-[#0A0A0A] p-5 rounded-xl flex flex-col h-full lg:h-[800px] border border-[#222] shadow-sm relative overflow-hidden">
       
-      <div className="flex justify-between items-center mb-6 z-10 relative">
-        <h3 className="text-lg font-extrabold flex items-center gap-3 tracking-wide" style={{ color: colors.accent }}>
-          <Newspaper className="h-5 w-5" />
-          LIVE NEWS
+      <div className="flex justify-between items-center mb-5 z-10 relative">
+        <h3 className="text-xs font-semibold flex items-center gap-2 text-[#888] uppercase tracking-wider">
+          <Newspaper className="h-4 w-4" />
+          Intelligence Feed
         </h3>
-        <BloombergButton color="accent" onClick={() => fetchNews()} disabled={isLoading} className="p-2 rounded-xl transition-transform hover:scale-110">
-          {isLoading ? <RefreshCw className="h-4 w-4 animate-spin" /> : <RefreshCw className="h-4 w-4" />}
+        <BloombergButton color="accent" onClick={() => fetchNews()} disabled={isLoading} className="h-6 w-6 p-0 flex items-center justify-center rounded bg-[#111] text-[#888] hover:text-white border border-[#333]">
+          {isLoading ? <RefreshCw className="h-3 w-3 animate-spin" /> : <RefreshCw className="h-3 w-3" />}
         </BloombergButton>
       </div>
 
-      <div className="overflow-y-auto pr-3 space-y-4 flex-1 custom-scrollbar z-10 relative">
-        {error && <div className="p-3 text-sm font-bold text-rose-400 bg-rose-500/10 border border-rose-500/20 rounded-xl shadow-lg">{error}</div>}
+      <div className="overflow-y-auto pr-2 space-y-2 flex-1 custom-scrollbar z-10 relative">
+        {error && <div className="p-3 text-xs font-medium text-red-500 bg-red-950/20 border border-red-900/30 rounded-md">{error}</div>}
         {news.length === 0 && !isLoading && !error && (
-          <div className="text-center py-10 text-sm text-gray-400">No news found</div>
+          <div className="text-center py-10 text-xs text-[#555]">No intelligence found</div>
         )}
         
         {news.map((item) => (
           <div
             key={item.url}
-            className="p-4 border border-white/5 rounded-2xl transition-all duration-300 hover:bg-white/10 hover:border-emerald-500/30 cursor-pointer shadow-sm group"
+            className="p-3 bg-[#0f0f0f] border border-[#222] rounded-lg transition-colors duration-200 hover:bg-[#1a1a1a] hover:border-[#333] cursor-pointer group"
             onClick={() => window.open(item.url, '_blank')}
           >
-            <h4 className="text-sm font-bold mb-2 line-clamp-2 group-hover:text-emerald-400 transition-colors drop-shadow-sm leading-relaxed" style={{ color: colors.text }}>
+            <h4 className="text-sm font-medium mb-1 line-clamp-2 text-[#e5e5e5] group-hover:text-white transition-colors leading-snug">
               {item.title}
             </h4>
-            <p className="text-xs mb-3 line-clamp-2 text-gray-400 leading-relaxed">{item.summary}</p>
-            <div className="flex justify-between text-[10px] text-gray-500 font-medium">
-              <span className="font-bold tracking-wider" style={{ color: colors.accent }}>{item.source}</span>
+            <p className="text-[11px] mb-2 line-clamp-2 text-[#888] leading-relaxed">{item.summary}</p>
+            <div className="flex justify-between text-[10px] text-[#666] font-medium uppercase tracking-wider">
+              <span className="text-white">{item.source}</span>
               <span>{formatPublishedTime(item.time_published)}</span>
             </div>
           </div>

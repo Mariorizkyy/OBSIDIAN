@@ -85,82 +85,80 @@ export function TerminalHeader({
   };
 
   return (
-    <div className="glass-panel mx-4 mt-4 rounded-3xl sticky top-4 z-50 flex flex-wrap gap-4 px-6 py-4 items-center border-b-2 border-emerald-500/20 shadow-2xl">
-      <div className="mr-8 font-bold text-2xl tracking-widest neon-text-green flex items-center gap-3">
-        <Activity className="h-6 w-6" />
+    <div className="bg-[#050505] sticky top-0 z-50 flex flex-wrap gap-4 px-8 py-4 items-center border-b border-[#222]">
+      <div className="mr-8 font-semibold text-xl tracking-wide text-white flex items-center gap-2">
+        <Activity className="h-5 w-5 text-white" />
         OBSIDIAN
       </div>
       
-      <BloombergButton color="red" onClick={onCancelClick} className="px-4 py-2 text-sm font-bold rounded-xl transition-transform hover:scale-105">
-        CANCL
+      <BloombergButton color="red" onClick={onCancelClick} className="px-3 py-1.5 text-xs font-semibold rounded bg-red-950/50 text-red-400 border border-red-900/50 hover:bg-red-900/50 transition-colors">
+        CANCEL
       </BloombergButton>
-      <BloombergButton color="green" onClick={onNewClick}>
+      <BloombergButton color="accent" onClick={onNewClick} className="px-3 py-1.5 text-xs font-medium rounded bg-[#111] text-[#888] border border-[#333] hover:text-white transition-colors">
         NEW
       </BloombergButton>
-      <BloombergButton color="green" onClick={onBlancClick}>
+      <BloombergButton color="accent" onClick={onBlancClick} className="px-3 py-1.5 text-xs font-medium rounded bg-[#111] text-[#888] border border-[#333] hover:text-white transition-colors">
         BLANC
       </BloombergButton>
-      <BloombergButton color="green" onClick={onNewsClick}>
-        <Newspaper className="h-3 w-3 mr-1" />
+      <BloombergButton color="accent" onClick={onNewsClick} className="px-3 py-1.5 text-xs font-medium rounded bg-[#111] text-[#888] border border-[#333] hover:text-white transition-colors flex items-center gap-1">
+        <Newspaper className="h-3 w-3" />
         NEWS
       </BloombergButton>
-      <BloombergButton color="green" onClick={onMoversClick}>
-        <TrendingUp className="h-3 w-3 mr-1" />
-        GMOV
+      <BloombergButton color="accent" onClick={onMoversClick} className="px-3 py-1.5 text-xs font-medium rounded bg-[#111] text-[#888] border border-[#333] hover:text-white transition-colors flex items-center gap-1">
+        <TrendingUp className="h-3 w-3" />
+        MOVERS
       </BloombergButton>
-      <BloombergButton color="green" onClick={onVolatilityClick}>
-        <BarChart2 className="h-3 w-3 mr-1" />
-        GVOL
+      <BloombergButton color="accent" onClick={onVolatilityClick} className="px-3 py-1.5 text-xs font-medium rounded bg-[#111] text-[#888] border border-[#333] hover:text-white transition-colors flex items-center gap-1">
+        <BarChart2 className="h-3 w-3" />
+        VOLATILITY
       </BloombergButton>
-      <BloombergButton color="green" onClick={onRmiClick}>
-        <Activity className="h-3 w-3 mr-1" />
+      <BloombergButton color="accent" onClick={onRmiClick} className="px-3 py-1.5 text-xs font-medium rounded bg-[#111] text-[#888] border border-[#333] hover:text-white transition-colors flex items-center gap-1">
+        <Activity className="h-3 w-3" />
         RMI
       </BloombergButton>
 
-      <BloombergButton color="accent" onClick={onHelpClick}>
-        <HelpCircle className="h-3 w-3 mr-1" />
-        HELP
-      </BloombergButton>
-
-      <BloombergButton color="accent" onClick={onThemeToggle}>
-        {isDarkMode ? <Sun className="h-3 w-3 mr-1" /> : <Moon className="h-3 w-3 mr-1" />}
-        {isDarkMode ? "LIGHT" : "DARK"}
-      </BloombergButton>
+      <div className="flex gap-2 ml-4">
+        <BloombergButton color="accent" onClick={onHelpClick} className="px-2 py-1.5 rounded bg-transparent text-[#666] hover:text-white transition-colors">
+          <HelpCircle className="h-4 w-4" />
+        </BloombergButton>
+        <BloombergButton color="accent" onClick={onThemeToggle} className="px-2 py-1.5 rounded bg-transparent text-[#666] hover:text-white transition-colors">
+          {isDarkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+        </BloombergButton>
+      </div>
 
       {/* Connect Wallet Button */}
       <div className="ml-2 flex items-center">
         <ConnectButton showBalance={false} />
       </div>
 
-      {/* Redis Control Buttons */}
-      <div className="ml-auto flex items-center gap-2">
-        <BloombergButton color="accent" onClick={refreshData} disabled={isLoading}>
-          REFR
+      {/* Control Buttons */}
+      <div className="ml-auto flex items-center gap-3">
+        <BloombergButton color="accent" onClick={refreshData} disabled={isLoading} className="text-[#666] hover:text-white transition-colors">
+          {isLoading ? <RefreshCw className="h-4 w-4 animate-spin" /> : <RefreshCw className="h-4 w-4" />}
         </BloombergButton>
         <BloombergButton
           color={isRealTimeEnabled ? "red" : "green"}
           onClick={toggleRealTimeUpdates}
           disabled={isLoading}
+          className={`px-3 py-1.5 text-xs font-bold rounded border transition-colors ${isRealTimeEnabled ? 'bg-red-950/30 text-red-500 border-red-900/50' : 'bg-emerald-950/30 text-emerald-500 border-emerald-900/50'}`}
         >
-          {isRealTimeEnabled ? "STOP" : "LIVE"}
+          {isRealTimeEnabled ? "LIVE: ON" : "LIVE: OFF"}
         </BloombergButton>
 
         {/* Data Status */}
-        <div className="flex items-center gap-2 text-xs">
-          {isLoading ? (
-            <RefreshCw className="h-3 w-3 animate-spin" />
-          ) : isRealTimeEnabled ? (
-            <Wifi className="h-3 w-3 text-green-500" />
+        <div className="flex items-center gap-2 text-xs font-mono">
+          {isRealTimeEnabled ? (
+            <Wifi className="h-3 w-3 text-emerald-500" />
           ) : isFromRedis ? (
-            <Database className="h-3 w-3 text-green-500" />
+            <Database className="h-3 w-3 text-emerald-500" />
           ) : (
-            <AlertTriangle className="h-3 w-3 text-yellow-500" />
+            <AlertTriangle className="h-3 w-3 text-amber-500" />
           )}
-          <span className={isFromRedis ? "text-green-500" : "text-yellow-500"}>
-            {dataSource === "alpha-vantage" ? "API" : isFromRedis ? "Redis" : "Local"}
+          <span className={isFromRedis ? "text-emerald-500" : "text-amber-500"}>
+            {dataSource === "alpha-vantage" ? "API" : isFromRedis ? "CACHE" : "LOCAL"}
           </span>
           {getDataFreshnessIndicator()}
-          {lastUpdated && <span className="text-gray-400">{lastUpdated.toLocaleTimeString()}</span>}
+          {lastUpdated && <span className="text-[#555]">{lastUpdated.toLocaleTimeString()}</span>}
         </div>
       </div>
     </div>
