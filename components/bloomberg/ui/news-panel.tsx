@@ -1,6 +1,6 @@
 "use client";
 
-import { fetchFinancialNews } from "@/lib/alpha-vantage";
+import { fetchCryptoNews } from "@/lib/coingecko";
 import { ExternalLink, RefreshCw, Newspaper } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { BloombergButton } from "../core/bloomberg-button";
@@ -26,7 +26,7 @@ export function NewsPanel({ colors }: NewsPanelProps) {
     try {
       setIsLoading(true);
       setError(null);
-      const newsData = await fetchFinancialNews("crypto market");
+      const newsData = await fetchCryptoNews();
       if (newsData && newsData.length > 0) {
         setNews(newsData.slice(0, 10)); // Only show top 10 to save space
       } else {

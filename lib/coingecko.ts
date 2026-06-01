@@ -132,3 +132,35 @@ function generateEmptyItem(symbol: string, region: string, index: number) {
     sparkline2: Array(8).fill(0),
   };
 }
+
+export async function fetchCryptoNews() {
+  try {
+    const response = await fetch("https://min-api.cryptocompare.com/data/v2/news/?lang=EN", { 
+      cache: "no-store",
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`CryptoCompare API error: ${response.status}`);
+    }
+
+    const data = await response.json();
+    
+    if (data && data.Data && Array.isArray(data.Data)) {
+      return data.Data.slice(0, 20).map((item: any) => ({
+        title: item.title,
+        summary: item.body,
+        url: item.url,
+        source: item.source_info?.name || item.source,
+        time_published: new Date(item.published_on * 1000).toISOString()
+      }));
+    }
+    
+    return null;
+  } catch (error) {
+    console.error("Error fetching crypto news:", error);
+    return null;
+  }
+}
