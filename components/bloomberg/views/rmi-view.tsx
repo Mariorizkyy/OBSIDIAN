@@ -24,7 +24,7 @@ import { BloombergButton } from "../core/bloomberg-button";
 import { useMarketDataQuery } from "../hooks/useMarketDataQuery";
 import { bloombergColors } from "../lib/theme-config";
 import type { MarketItem } from "../types";
-import { AiMarketAnalysis } from "../ui/ai-market-analysis";
+import { AlphaFeed } from "../../../components/AlphaFeed";
 import { RmiChart } from "../ui/rmi-chart";
 
 export function RmiView() {
@@ -509,12 +509,10 @@ export function RmiView() {
             </p>
           </div>
 
-          {/* AI Market Analysis */}
-          <AiMarketAnalysis
-            selectedSecurity={selectedSecurityData}
-            benchmarkSecurity={benchmarkData}
-            colors={colors}
-          />
+          {/* OBSIDIAN Intel Alpha Feed */}
+          <div className="h-[400px]">
+            <AlphaFeed />
+          </div>
         </TabsContent>
       </Tabs>
     </div>

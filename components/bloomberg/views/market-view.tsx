@@ -3,7 +3,7 @@
 import { useMarketDataQuery } from "../hooks";
 import { bloombergColors } from "../lib/theme-config";
 import { MarketTable } from "../ui";
-import { AiMarketAnalysis } from "../ui/ai-market-analysis";
+import { AlphaFeed } from "../../../components/AlphaFeed";
 import { NewsPanel } from "../ui/news-panel";
 import { ShieldAlert } from "lucide-react";
 
@@ -44,7 +44,9 @@ export function MarketView({ isDarkMode }: MarketViewProps) {
 
       {/* Tengah: OBSIDIAN AI Core & Market Data */}
       <div className="lg:col-span-6 flex flex-col h-full gap-6">
-        <AiMarketAnalysis colors={colors as any} />
+        <div className="h-[400px]">
+          <AlphaFeed />
+        </div>
         
         <div className="bg-[#0A0A0A] p-5 rounded-xl border border-[#222] shadow-sm flex-1 overflow-hidden flex flex-col">
           <h3 className="text-xs font-semibold flex items-center gap-2 mb-4 text-[#888] uppercase tracking-wider">

@@ -1,40 +1,13 @@
 "use client";
 
 import "@rainbow-me/rainbowkit/styles.css";
-import { getDefaultConfig, RainbowKitProvider, darkTheme } from "@rainbow-me/rainbowkit";
+import { RainbowKitProvider, darkTheme } from "@rainbow-me/rainbowkit";
 import { WagmiProvider } from "wagmi";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { defineChain } from "viem";
 import { useState } from "react";
+import { wagmiConfig, ritualChain as ritualTestnet } from "../../../lib/wagmi";
 
-export const ritualTestnet = defineChain({
-  id: 1979,
-  name: "Ritual Testnet",
-  network: "ritual-testnet",
-  nativeCurrency: {
-    decimals: 18,
-    name: "Ritual",
-    symbol: "RITUAL",
-  },
-  rpcUrls: {
-    default: {
-      http: ["https://rpc.ritualfoundation.org"],
-    },
-    public: {
-      http: ["https://rpc.ritualfoundation.org"],
-    },
-  },
-  blockExplorers: {
-    default: { name: "Ritual Explorer", url: "https://explorer.ritualfoundation.org" },
-  },
-});
-
-const config = getDefaultConfig({
-  appName: "OBSIDIAN Terminal",
-  projectId: "YOUR_PROJECT_ID", // Replace with actual project ID later if needed
-  chains: [ritualTestnet],
-  ssr: true,
-});
+export { ritualTestnet };
 
 export function Web3Provider({ children }: { children: React.ReactNode }) {
   const [queryClient] = useState(
@@ -59,7 +32,7 @@ export function Web3Provider({ children }: { children: React.ReactNode }) {
   );
 
   return (
-    <WagmiProvider config={config}>
+    <WagmiProvider config={wagmiConfig}>
       <QueryClientProvider client={queryClient}>
         <RainbowKitProvider theme={darkTheme({
           accentColor: '#10b981', // Terminal green
